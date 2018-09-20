@@ -81,28 +81,28 @@ int main(int argc, char **argv){
       pcl::console::print_info("\nFound pcd file.\n");
       return -1;
     }else if(file_is_ply){
-        pcl::io::loadPolygonFile(argv[filenames[0]],cl);
-        pcl::fromPCLPointCloud2(cl.cloud, *cloud);
-        if(cloud->points.size()<=0){
-            pcl::console::print_warn("\nloadPolygonFile could not read the cloud, attempting to loadPLYFile...\n");
-            pcl::io::loadPLYFile(argv[filenames[0]], *cloud);
-            if(cloud->points.size()<=0){
-                pcl::console::print_warn("\nloadPLYFile could not read the cloud, attempting to PLYReader...\n");
-                pcl::PLYReader plyRead;
-                plyRead.read(argv[filenames[0]],*cloud);
-                if(cloud->points.size()<=0){
-                    pcl::console::print_error("\nError. ply file is not compatible.\n");
-                    return -1;
-                }
-            }
-         }
+      pcl::io::loadPLYFile(argv[filenames[0]],*cloud);
+      if(cloud->points.size()<=0){
+          pcl::console::print_warn("\nloadPLYFile could not read the cloud, attempting to loadPolygonFile...\n");
+          pcl::io::loadPolygonFile(argv[filenames[0]], cl);
+          pcl::fromPCLPointCloud2(cl.cloud, *cloud);
+          if(cloud->points.size()<=0){
+              pcl::console::print_warn("\nloadPolygonFile could not read the cloud, attempting to PLYReader...\n");
+              pcl::PLYReader plyRead;
+              plyRead.read(argv[filenames[0]],*cloud);
+              if(cloud->points.size()<=0){
+                  pcl::console::print_error("\nError. ply file is not compatible.\n");
+                  return -1;
+              }
+          }
+       }
 
-        pcl::console::print_info("\nFound ply file.\n");
-        pcl::console::print_info ("[done, ");
-        pcl::console::print_value ("%g", tt.toc ());
-        pcl::console::print_info (" ms : ");
-        pcl::console::print_value ("%d", cloud->size ());
-        pcl::console::print_info (" points]\n");
+      pcl::console::print_info("\nFound ply file.\n");
+      pcl::console::print_info ("[done, ");
+      pcl::console::print_value ("%g", tt.toc ());
+      pcl::console::print_info (" ms : ");
+      pcl::console::print_value ("%d", cloud->size ());
+      pcl::console::print_info (" points]\n");
 
     }else if(file_is_txt or file_is_xyz){
       std::ifstream file(argv[filenames[0]]);
