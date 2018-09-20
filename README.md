@@ -9,7 +9,7 @@ in the main folder:
 
 	- cd build  
 	- cmake ../src/
-  - make
+  	- make
        
         	 
 ### Test
