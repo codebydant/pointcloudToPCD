@@ -14,7 +14,7 @@ in the main folder:
         	 
 ### Test
 
-    ./pcl-visualizer <ply file> -o <output dir>
-    ./pcl-visualizer <txt file> -o <output dir>
-    ./pcl-visualizer <xyz file> -o <output dir>
+    ./pointcloudToPCD <ply file> -o <output dir>
+    ./pointcloudToPCD <txt file> -o <output dir>
+    ./pointcloudToPCD <xyz file> -o <output dir>
 
