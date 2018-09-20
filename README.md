@@ -14,8 +14,7 @@ in the main folder:
         	 
 ### Test
 
-    ./pcl-visualizer <pcd file> 
-    ./pcl-visualizer <ply file> 
-    ./pcl-visualizer <txt file> 
-    ./pcl-visualizer <xyz file> 
+    ./pcl-visualizer <ply file> -o <output dir>
+    ./pcl-visualizer <txt file> -o <output dir>
+    ./pcl-visualizer <xyz file> -o <output dir>
 
