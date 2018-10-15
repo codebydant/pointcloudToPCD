@@ -1,21 +1,16 @@
 /*********************************
            HEADERS
 **********************************/
-#include <pcl/common/common_headers.h>
-#include <pcl/features/normal_3d.h>
 #include <pcl/io/pcd_io.h>
 #include <pcl/io/ply_io.h>
-#include <pcl/io/vtk_io.h>
-#include <pcl/io/io.h>
 #include <pcl/io/vtk_lib_io.h>
-#include <pcl/io/file_io.h>
-#include <pcl/io/ply/ply_parser.h>
-#include <pcl/io/ply/ply.h>
+
 #include <pcl/visualization/pcl_visualizer.h>
+
 #include <pcl/console/print.h>
 #include <pcl/console/parse.h>
 #include <pcl/console/time.h>
-#include <pcl/range_image/range_image.h>
+
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -82,15 +77,15 @@ int main(int argc, char **argv){
       return -1;
     }else if(file_is_ply){
       pcl::io::loadPLYFile(argv[filenames[0]],*cloud);
-      if(cloud->points.size()<=0){
+      if(cloud->points.size()<=0 or cloud->points.at(0).x <=0 and cloud->points.at(0).y <=0 and cloud->points.at(0).z <=0){
           pcl::console::print_warn("\nloadPLYFile could not read the cloud, attempting to loadPolygonFile...\n");
           pcl::io::loadPolygonFile(argv[filenames[0]], cl);
           pcl::fromPCLPointCloud2(cl.cloud, *cloud);
-          if(cloud->points.size()<=0){
+          if(cloud->points.size()<=0 or cloud->points.at(0).x <=0 and cloud->points.at(0).y <=0 and cloud->points.at(0).z <=0){
               pcl::console::print_warn("\nloadPolygonFile could not read the cloud, attempting to PLYReader...\n");
               pcl::PLYReader plyRead;
               plyRead.read(argv[filenames[0]],*cloud);
-              if(cloud->points.size()<=0){
+              if(cloud->points.size()<=0 or cloud->points.at(0).x <=0 and cloud->points.at(0).y <=0 and cloud->points.at(0).z <=0){
                   pcl::console::print_error("\nError. ply file is not compatible.\n");
                   return -1;
               }
