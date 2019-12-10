@@ -20,11 +20,12 @@ the structre project should be something like:
 	
 3. Modify the CMakeLists.txt file in */src* with your own PCL build dir: e.g. **/opt/pcl-1.9.0/build** and save it.	
 4. Compile with cmake <br/>
+
 at the root folder:
 
-	$ cd build/  
-	$ cmake ../src/
-  	$ make
+		$ cd build/  
+		$ cmake ../src/
+  		$ make
        
         	 
 ### Test
