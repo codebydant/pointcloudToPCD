@@ -1,5 +1,5 @@
 # pointcloudToPCD
-C++ application to convert ply file, txt file or xyz file point cloud to PCD file
+C++ application to convert ply file, txt file or xyz pointcloud to .pcd pointcloud
 
 -------------------
 ## How to compile
