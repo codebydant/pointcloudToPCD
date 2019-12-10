@@ -22,9 +22,9 @@ the structre project should be something like:
 4. Compile with cmake <br/>
 at the root folder:
 
-	- cd build/  
-	- cmake ../src/
-  	- make
+	$ cd build/  
+	$ cmake ../src/
+  	$ make
        
         	 
 ### Test
