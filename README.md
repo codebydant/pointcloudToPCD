@@ -35,6 +35,11 @@ Go to *pointcloudToPCD-master/build/bin* folder and:
     ./pointcloudToPCD <txt file> -o <output dir>
     ./pointcloudToPCD <xyz file> -o <output dir>
     
+    e.g.
+    
+    ./pointcloudToPCD /home/xXx/Downloads/cloud.txt -o /home/xXx/Downloads
+
+    
     
  ## Note:
  The *.txt* file structure should only numbers: e.g.
