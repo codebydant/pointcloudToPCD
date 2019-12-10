@@ -13,10 +13,10 @@ C++ application to convert ply file, txt file or xyz pointcloud to .pcd pointclo
 2. Create a "build" folder
 the structre project should be something like:
 
-	- build/
-	- src/
-	- cloud_test/
-	- README.md
+		- build/
+		- src/
+		- cloud_test/
+		- README.md
 	
 3. Modify the CMakeLists.txt file in */src* with your own PCL build dir: e.g. **/opt/pcl-1.9.0/build** and save it.	
 4. Compile with cmake <br/>
