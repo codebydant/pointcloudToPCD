@@ -99,32 +99,75 @@ int main(int argc, char **argv){
       pcl::console::print_value ("%d", cloud->size ());
       pcl::console::print_info (" points]\n");
 
-    }else if(file_is_txt or file_is_xyz){
+    }else if(file_is_txt){
       std::ifstream file(argv[filenames[0]]);
       if(!file.is_open()){
           std::cout << "Error: Could not find "<< argv[filenames[0]] << std::endl;
           return -1;
       }
+      
+      std::cout << "file opened." << std::endl;
       double x_,y_,z_;
-      while(file >> x_ >> y_ >> z_){
+      unsigned int r, g, b; 
+
+      while(file >> x_ >> y_ >> z_ >> r >> g >> b){
           pcl::PointXYZRGB pt;
           pt.x = x_;
           pt.y = y_;
-          pt.z= z_;
-          cloud->points.push_back(pt);
-      }
+          pt.z= z_;            
+          
+          uint8_t r_, g_, b_; 
+          r_ = uint8_t(r); 
+          g_ = uint8_t(g); 
+          b_ = uint8_t(b); 
 
+          uint32_t rgb_ = ((uint32_t)r_ << 16 | (uint32_t)g_ << 8 | (uint32_t)b_); 
+          pt.rgb = *reinterpret_cast<float*>(&rgb_);               
+              
+          cloud->points.push_back(pt);
+          //std::cout << "pointXYZRGB:" <<  pt << std::endl;
+      }      
+     
       pcl::console::print_info("\nFound txt file.\n");
       pcl::console::print_info ("[done, ");
       pcl::console::print_value ("%g", tt.toc ());
       pcl::console::print_info (" ms : ");
-      pcl::console::print_value ("%d", cloud->size ());
+      pcl::console::print_value ("%d", cloud->points.size ());
+      pcl::console::print_info (" points]\n");
+      
+  }else if(file_is_xyz){
+  
+      std::ifstream file(argv[filenames[0]]);
+      if(!file.is_open()){
+          std::cout << "Error: Could not find "<< argv[filenames[0]] << std::endl;
+          return -1;
+      }
+      
+      std::cout << "file opened." << std::endl;
+      double x_,y_,z_;
+
+      while(file >> x_ >> y_ >> z_){
+          
+          pcl::PointXYZRGB pt;
+          pt.x = x_;
+          pt.y = y_;
+          pt.z= z_;            
+          
+          cloud->points.push_back(pt);
+          //std::cout << "pointXYZRGB:" <<  pt << std::endl;
+      }      
+     
+      pcl::console::print_info("\nFound xyz file.\n");
+      pcl::console::print_info ("[done, ");
+      pcl::console::print_value ("%g", tt.toc ());
+      pcl::console::print_info (" ms : ");
+      pcl::console::print_value ("%d", cloud->points.size ());
       pcl::console::print_info (" points]\n");
   }
 
   cloud->width = (int) cloud->points.size ();
   cloud->height = 1;
-  cloud->is_dense = true;  
+  cloud->is_dense = true;
 
   output_dir += "/cloudConverted.pcd";
 
