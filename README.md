@@ -2,6 +2,12 @@
 C++ application to convert ply file, txt file or xyz pointcloud to .pcd pointcloud
 
 -------------------
+## Input file structure support
+
+* .ply
+* .txt
+* .xyz
+
 ## How to compile
 1. Download or clone repo: https://github.com/danielTobon43/pointcloudToPCD.git 
 2. Create a "build" folder
@@ -40,6 +46,14 @@ Go to *pointcloudToPCD-master/build/bin* folder and:
 	0.795 9.978 12.771 243 229 216
 	
 Where each column represent: *x y z r g b*
+
+## Optional programs
+- pointcloud to txt: 		https://github.com/danielTobon43/pointcloudToTXT
+- pointcloud to mesh: 		https://github.com/danielTobon43/pointcloudToMesh
+- pcl-visualizer: 		https://github.com/danielTobon43/pcl_visualizer
+- unsampling pointcloud:	https://github.com/danielTobon43/upsamplingCloudPCL
+- DBScan: 			https://github.com/danielTobon43/DBScan-PCL-Optimized
+- Align pointcloud: 		https://github.com/danielTobon43/align_pointcloud
  
  
  	
